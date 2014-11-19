@@ -592,7 +592,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([\w_\-$:]+)(?=[\s;&gt;\{])</string>
+					<string>([\w_\-$:]+)(?=([\s;&gt;\{])|$)</string>
 					<key>name</key>
 					<string>entity.other.attribute-name</string>
 				</dict>
@@ -639,6 +639,26 @@
 					<string>((\s*)[^\s&gt;;\{]+)</string>
 					<key>name</key>
 					<string>string.quoted</string>
+				</dict>
+			</array>
+		</dict>
+		<key>node_attributes</key>
+		<dict>
+			<key>begin</key>
+			<string></string>
+			<key>end</key>
+			<string>(?&lt;=[&gt;;\{\}])</string>
+			<key>name</key>
+			<string>node.attributes.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#klass_id</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#node_attribute</string>
 				</dict>
 			</array>
 		</dict>
@@ -788,18 +808,14 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#klass_id</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#node_attribute</string>
+					<string>#node_attributes</string>
 				</dict>
 			</array>
 		</dict>
 		<key>tag_javascript</key>
 		<dict>
 			<key>begin</key>
-			<string>(slot|event)</string>
+			<string>(slot|event)\b</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -831,7 +847,7 @@
 		<key>tag_markdown</key>
 		<dict>
 			<key>begin</key>
-			<string>(md|markdown)</string>
+			<string>(md|markdown)\b</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -863,7 +879,7 @@
 		<key>tag_style</key>
 		<dict>
 			<key>begin</key>
-			<string>(style)</string>
+			<string>(style)\b</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
