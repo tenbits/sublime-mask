@@ -26,6 +26,8 @@ In progress
 	Copy `lib/Mask.sublime-package` into Sublime's `Install Packages` directory.
 
 
+![screenshot](resources/screen.png)
+
 ----
 
 :beers: Happy coding
