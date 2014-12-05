@@ -31,3 +31,6 @@ In progress
 ----
 
 :beers: Happy coding
+
+----
+:copyright: _MIT - 2014 Alex Kit_
