@@ -815,7 +815,7 @@
 		<key>tag_javascript</key>
 		<dict>
 			<key>begin</key>
-			<string>(slot|event)\b</string>
+			<string>(slot|event|function|script)\b</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -825,7 +825,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\}</string>
+			<string>(\})|(?&lt;=\})</string>
 			<key>name</key>
 			<string>slot.mask</string>
 			<key>patterns</key>

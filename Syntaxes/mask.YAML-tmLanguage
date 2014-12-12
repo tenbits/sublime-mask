@@ -42,10 +42,10 @@ repository:
       - include: '#node_attributes'
   tag_javascript:
     name: slot.mask
-    begin: (slot|event)\b
+    begin: (slot|event|function|script)\b
     beginCaptures:
       '1': { name: support.constant }
-    end: \}
+    end: (\})|(?<=\})
     patterns:
     - include: '#klass_id'
     - include: '#node_attribute'
