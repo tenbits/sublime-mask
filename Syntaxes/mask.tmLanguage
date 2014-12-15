@@ -24,6 +24,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#import</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#tag_javascript</string>
 		</dict>
 		<dict>
@@ -164,6 +168,42 @@
 							<string>text.html.basic</string>
 						</dict>
 					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>import</key>
+		<dict>
+			<key>begin</key>
+			<string>(import)\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(;|(?&lt;=['|"]))</string>
+			<key>name</key>
+			<string>import.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(as|from)\b</string>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(,)</string>
+					<key>name</key>
+					<string>punctuation</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#literal-string</string>
 				</dict>
 			</array>
 		</dict>

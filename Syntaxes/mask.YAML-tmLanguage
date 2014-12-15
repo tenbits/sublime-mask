@@ -9,6 +9,7 @@ patterns:
 - include: '#comments'
 - include: '#punctuation'
 - include: '#literal-string'
+- include: '#import'
 - include: '#tag_javascript'
 - include: '#tag_style'
 - include: '#tag_markdown'
@@ -28,6 +29,18 @@ repository:
     patterns:
       - include: "$self"
 
+  import:
+    name: import.mask
+    begin: (import)\b
+    beginCaptures:
+      '1': { name: keyword }
+    end: (;|(?<=['|"]))
+    patterns:
+      - name: keyword
+        match: \b(as|from)\b
+      - name: punctuation
+        match: (,)
+      - include: '#literal-string'
   tag:
     name: tag.mask
     begin: >-

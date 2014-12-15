@@ -29,5 +29,6 @@ module.exports = {
 				zip.writeZip('lib/Mask.sublime-package');
 			}
 		}
-	}
+	},
+	defaults: ['zip']
 };
