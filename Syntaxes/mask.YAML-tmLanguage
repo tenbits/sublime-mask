@@ -88,13 +88,12 @@ repository:
 
   node:
     name: node.mask
-    begin: ([^\s\.#;>\{]+)
+    begin: ([^\s\.#;>\{\(]+)
     beginCaptures:
       '0': { name: entity.name.tag.mask }
     end: (?<=[>;\{\}])|(?=[>;\{\}])|([>;\{\}])
     patterns:
-      - include: '#klass_id'
-      - include: '#node_attribute'
+      - include: '#node_attributes'
   
   node_template:
     name: node.mask
