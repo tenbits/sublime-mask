@@ -1,10 +1,8 @@
 {
     "scopeName": "source.mask", 
-    "name": "Mask", 
     "fileTypes": [
         "mask"
     ], 
-    "uuid": "1a1ae218-751e-4eb8-8c10-4400d892a660", 
     "patterns": [
         {
             "include": "#comments"
@@ -14,6 +12,12 @@
         }, 
         {
             "include": "#literal-string"
+        }, 
+        {
+            "include": "#import"
+        }, 
+        {
+            "include": "#define"
         }, 
         {
             "include": "#tag_javascript"
@@ -28,6 +32,9 @@
             "include": "#tag"
         }, 
         {
+            "include": "#statement"
+        }, 
+        {
             "include": "#node_klass_id"
         }, 
         {
@@ -37,297 +44,48 @@
             "include": "#node"
         }
     ], 
+    "uuid": "1a1ae218-751e-4eb8-8c10-4400d892a660", 
+    "name": "Mask", 
     "repository": {
-        "node": {
-            "beginCaptures": {
-                "0": {
-                    "name": "entity.name.tag.mask"
-                }
-            }, 
-            "begin": "([^\\s\\.#;>\\{]+)", 
+        "comments": {
             "patterns": [
                 {
-                    "include": "#klass_id"
+                    "end": "\\*/", 
+                    "name": "comment.block.js", 
+                    "captures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.js"
+                        }
+                    }, 
+                    "begin": "/\\*"
                 }, 
                 {
-                    "include": "#node_attribute"
-                }
-            ], 
-            "name": "node.mask", 
-            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])"
-        }, 
-        "javascript": {
-            "patterns": [
-                {
-                    "endCaptures": {
-                        "0": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
-                    "name": "syntax.js.mask", 
-                    "begin": "\\{", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
-                    "patterns": [
-                        {
-                            "include": "#js-block"
-                        }, 
-                        {
-                            "include": "source.js"
-                        }
-                    ], 
-                    "end": "\\}"
-                }
-            ]
-        }, 
-        "punctuation": {
-            "patterns": [
-                {
-                    "include": "$self"
-                }
-            ], 
-            "name": "meta.group.braces", 
-            "match": "([>;\\{\\}])"
-        }, 
-        "node_klass_id": {
-            "patterns": [
-                {
-                    "include": "#klass_id"
-                }, 
-                {
-                    "include": "#node_attribute"
-                }
-            ], 
-            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])", 
-            "name": "node.head.mask", 
-            "begin": "(?=[\\.#])"
-        }, 
-        "literal-string": {
-            "patterns": [
-                {
-                    "endCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "name": "literal-string", 
-                    "begin": "(''')", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "patterns": [
-                        {
-                            "include": "#string-content"
-                        }
-                    ], 
-                    "end": "(''')"
-                }, 
-                {
-                    "endCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "name": "literal-string", 
-                    "begin": "(\"\"\")", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "patterns": [
-                        {
-                            "include": "#string-content"
-                        }
-                    ], 
-                    "end": "(\"\"\")"
-                }, 
-                {
-                    "endCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "name": "literal-string", 
-                    "begin": "(')", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "patterns": [
-                        {
-                            "include": "#string-content"
-                        }
-                    ], 
-                    "end": "(')"
-                }, 
-                {
-                    "endCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "name": "literal-string", 
-                    "begin": "(\")", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "string.quoted.single.js"
-                        }
-                    }, 
-                    "patterns": [
-                        {
-                            "include": "#string-content"
-                        }
-                    ], 
-                    "end": "(\")"
-                }
-            ]
-        }, 
-        "tag": {
-            "beginCaptures": {
-                "1": {
-                    "name": "storage.type.mask"
-                }, 
-                "2": {
-                    "name": "support.constant"
-                }
-            }, 
-            "begin": "(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|dir|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|keygen|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|u|ul|var|video|wbr|xmp)\\b|(if|else|with|each|for|\\+if|\\+with|\\+each|\\+for|debugger|define|log|script|\\:import|\\:template)\\b", 
-            "patterns": [
-                {
-                    "include": "#node_attributes"
-                }
-            ], 
-            "name": "tag.mask", 
-            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])"
-        }, 
-        "tag_markdown": {
-            "beginCaptures": {
-                "1": {
-                    "name": "support.constant"
-                }
-            }, 
-            "begin": "(md|markdown)\\b", 
-            "patterns": [
-                {
-                    "include": "#klass_id"
-                }, 
-                {
-                    "include": "#node_attribute"
-                }, 
-                {
-                    "include": "#markdown"
-                }
-            ], 
-            "name": "syntax.markdown.mask", 
-            "end": "(?<=\\})|(\\})"
-        }, 
-        "markdown": {
-            "endCaptures": {
-                "1": {
-                    "name": "variable.parameter"
-                }
-            }, 
-            "name": "syntax.markdown.mask", 
-            "begin": "((\\{|>)\\s*('''|\"\"\"))", 
-            "beginCaptures": {
-                "1": {
-                    "name": "variable.parameter"
-                }
-            }, 
-            "patterns": [
-                {
-                    "include": "text.html.markdown"
-                }
-            ], 
-            "end": "('''|\"\"\")"
-        }, 
-        "js-block": {
-            "patterns": [
-                {
-                    "patterns": [
-                        {
-                            "include": "#js-block"
-                        }, 
-                        {
-                            "include": "source.js"
-                        }
-                    ], 
-                    "end": "\\}", 
-                    "name": "other.interpolated.mask", 
-                    "begin": "\\{"
-                }
-            ]
-        }, 
-        "js-interpolation": {
-            "patterns": [
-                {
-                    "patterns": [
-                        {
-                            "include": "#js-interpolation"
-                        }, 
-                        {
-                            "include": "source.js"
-                        }
-                    ], 
-                    "end": "\\]", 
-                    "name": "other.interpolated.mask", 
-                    "begin": "\\["
-                }
-            ]
-        }, 
-        "node_attribute": {
-            "patterns": [
-                {
-                    "include": "#expression", 
-                    "name": "attribute-expression"
-                }, 
-                {
-                    "beginCaptures": {
+                    "name": "comment.line.double-slash.js", 
+                    "match": "(//).*$\\n?", 
+                    "captures": {
                         "1": {
-                            "name": "entity.other.attribute-name"
-                        }, 
-                        "2": {
-                            "name": "keyword.operator.assignment"
+                            "name": "punctuation.definition.comment.js"
                         }
-                    }, 
-                    "begin": "([\\w_\\-$]+)(\\s*=\\s*)", 
-                    "patterns": [
-                        {
-                            "include": "#node_attribute_value"
-                        }
-                    ], 
-                    "name": "attribute-key-value", 
-                    "end": "([\\s;>\\{])"
-                }, 
-                {
-                    "name": "entity.other.attribute-name", 
-                    "match": "([\\w_\\-$:]+)(?=([\\s;>\\{])|$)"
+                    }
                 }
-            ], 
-            "name": "node.attribute.mask"
+            ]
         }, 
         "interpolation": {
             "patterns": [
                 {
-                    "endCaptures": {
-                        "0": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
-                    "name": "markup.italic", 
-                    "begin": "(~\\[)", 
                     "beginCaptures": {
                         "0": {
                             "name": "variable.parameter"
                         }
                     }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "variable.parameter"
+                        }
+                    }, 
+                    "end": "\\]", 
+                    "name": "markup.italic", 
+                    "begin": "(~\\[)", 
                     "patterns": [
                         {
                             "name": "keyword.util.mask", 
@@ -339,90 +97,73 @@
                         {
                             "include": "source.js"
                         }
-                    ], 
-                    "end": "\\]"
+                    ]
                 }
             ]
-        }, 
-        "node_attribute_expression": {
-            "patterns": [
-                {
-                    "include": "js-expression"
-                }
-            ], 
-            "end": "(\\))", 
-            "name": "meta.group.braces.round", 
-            "begin": "(\\()"
         }, 
         "html": {
             "patterns": [
                 {
-                    "endCaptures": {
-                        "1": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
-                    "name": "syntax.html.mask", 
-                    "begin": "((\\{|>)\\s*('''|\"\"\"))", 
                     "beginCaptures": {
                         "1": {
                             "name": "variable.parameter"
                         }
                     }, 
+                    "endCaptures": {
+                        "1": {
+                            "name": "variable.parameter"
+                        }
+                    }, 
+                    "end": "(('''|\"\"\"))", 
+                    "name": "syntax.html.mask", 
+                    "begin": "((\\{|>)\\s*('''|\"\"\"))", 
                     "patterns": [
                         {
                             "include": "text.html.basic"
                         }
-                    ], 
-                    "end": "(('''|\"\"\"))"
+                    ]
                 }
             ]
         }, 
-        "klass_id": {
-            "beginCaptures": {
-                "1": {
-                    "name": "entity.other.attribute-name.mask"
-                }
-            }, 
-            "begin": "([\\.#][\\w_\\-$]*)", 
+        "node_attribute": {
+            "name": "node.attribute.mask", 
             "patterns": [
                 {
-                    "include": "#interpolation"
+                    "name": "attribute-expression", 
+                    "include": "#expression"
                 }, 
                 {
-                    "name": "entity.other.attribute-name.mask", 
-                    "match": "(([\\w_\\-$]+)(?=[\\s.#]))"
-                }
-            ], 
-            "name": "node-head.attribute.mask", 
-            "end": "(?=[\\s\\.#])"
-        }, 
-        "node_attribute_value": {
-            "patterns": [
-                {
-                    "name": "constant.character", 
-                    "match": "(true|false)(?=[\\s>;\\{])"
+                    "end": "([\\s;>\\{])", 
+                    "name": "attribute-key-value", 
+                    "beginCaptures": {
+                        "1": {
+                            "name": "entity.other.attribute-name"
+                        }, 
+                        "2": {
+                            "name": "keyword.operator.assignment"
+                        }
+                    }, 
+                    "patterns": [
+                        {
+                            "include": "#node_attribute_value"
+                        }
+                    ], 
+                    "begin": "([\\w_\\-$]+)(\\s*=\\s*)"
                 }, 
                 {
-                    "name": "constant.numeric", 
-                    "match": "([\\d\\.]+)(?=[\\s>;\\{])"
-                }, 
-                {
-                    "include": "#literal-string"
-                }, 
-                {
-                    "name": "string.quoted", 
-                    "match": "((\\s*)[^\\s>;\\{]+)"
+                    "name": "entity.other.attribute-name", 
+                    "match": "([\\w_\\-$:]+)(?=([\\s;>\\{])|$)"
                 }
             ]
         }, 
         "tag_javascript": {
+            "end": "(\\})|(?<=\\})", 
+            "name": "slot.mask", 
             "beginCaptures": {
                 "1": {
                     "name": "support.constant"
                 }
             }, 
-            "begin": "(slot|event)\\b", 
             "patterns": [
                 {
                     "include": "#klass_id"
@@ -434,12 +175,169 @@
                     "include": "#javascript"
                 }
             ], 
-            "name": "slot.mask", 
-            "end": "\\}"
+            "begin": "(slot|event|function|script)\\b"
         }, 
-        "js-expression": {
+        "node_klass_id": {
+            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])", 
+            "name": "node.head.mask", 
             "patterns": [
                 {
+                    "include": "#klass_id"
+                }, 
+                {
+                    "include": "#node_attribute"
+                }
+            ], 
+            "begin": "(?=[\\.#])"
+        }, 
+        "markdown": {
+            "beginCaptures": {
+                "1": {
+                    "name": "variable.parameter"
+                }
+            }, 
+            "endCaptures": {
+                "1": {
+                    "name": "variable.parameter"
+                }
+            }, 
+            "end": "('''|\"\"\")", 
+            "name": "syntax.markdown.mask", 
+            "begin": "((\\{|>)\\s*('''|\"\"\"))", 
+            "patterns": [
+                {
+                    "include": "text.html.markdown"
+                }
+            ]
+        }, 
+        "tag": {
+            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])", 
+            "name": "tag.mask", 
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type.mask"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "#node_attributes"
+                }
+            ], 
+            "begin": "(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|dir|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|keygen|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|u|ul|var|video|wbr|xmp)(?=[\\s.#;\\{\\}]|$)"
+        }, 
+        "node_attributes": {
+            "end": "(?<=[>;\\{\\}])", 
+            "name": "node.attributes.mask", 
+            "patterns": [
+                {
+                    "include": "#klass_id"
+                }, 
+                {
+                    "include": "#node_attribute"
+                }
+            ], 
+            "begin": ""
+        }, 
+        "statement": {
+            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])", 
+            "name": "tag.mask", 
+            "beginCaptures": {
+                "1": {
+                    "name": "support.constant"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "#node_attributes"
+                }
+            ], 
+            "begin": "(if|else|with|each|for|\\+if|\\+with|\\+each|\\+for|debugger|log|script|\\:import|\\:template)(?=[\\s.#;\\{\\}]|$)"
+        }, 
+        "javascript": {
+            "patterns": [
+                {
+                    "beginCaptures": {
+                        "0": {
+                            "name": "variable.parameter"
+                        }
+                    }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "variable.parameter"
+                        }
+                    }, 
+                    "end": "\\}", 
+                    "name": "syntax.js.mask", 
+                    "begin": "\\{", 
+                    "patterns": [
+                        {
+                            "include": "#js-block"
+                        }, 
+                        {
+                            "include": "source.js"
+                        }
+                    ]
+                }
+            ]
+        }, 
+        "klass_id": {
+            "end": "(?=[\\s\\.#])", 
+            "name": "node-head.attribute.mask", 
+            "beginCaptures": {
+                "1": {
+                    "name": "entity.other.attribute-name.markup.bold.mask"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "#interpolation"
+                }, 
+                {
+                    "name": "entity.other.attribute-name.mask", 
+                    "match": "(([\\w_\\-$]+)(?=[\\s.#]))"
+                }
+            ], 
+            "begin": "([\\.#][\\w_\\-$]*)"
+        }, 
+        "import": {
+            "end": "(;|(?<=['|\"]))", 
+            "name": "import.mask", 
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword"
+                }
+            }, 
+            "patterns": [
+                {
+                    "name": "keyword", 
+                    "match": "\\b(as|from)\\b"
+                }, 
+                {
+                    "name": "punctuation", 
+                    "match": "(,)"
+                }, 
+                {
+                    "include": "#literal-string"
+                }
+            ], 
+            "begin": "(import)\\b"
+        }, 
+        "expression": {
+            "patterns": [
+                {
+                    "beginCaptures": {
+                        "0": {
+                            "name": "variable.parameter"
+                        }
+                    }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "variable.parameter"
+                        }
+                    }, 
+                    "end": "\\)", 
+                    "name": "markup.italic", 
+                    "begin": "(\\()", 
                     "patterns": [
                         {
                             "include": "#js-expression"
@@ -447,10 +345,147 @@
                         {
                             "include": "source.js"
                         }
-                    ], 
-                    "end": "\\)", 
+                    ]
+                }
+            ]
+        }, 
+        "tag_markdown": {
+            "end": "(?<=\\})|(\\})", 
+            "name": "syntax.markdown.mask", 
+            "beginCaptures": {
+                "1": {
+                    "name": "support.constant"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "#klass_id"
+                }, 
+                {
+                    "include": "#node_attribute"
+                }, 
+                {
+                    "include": "#markdown"
+                }
+            ], 
+            "begin": "(md|markdown)\\b"
+        }, 
+        "node_template": {
+            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])", 
+            "name": "node.mask", 
+            "beginCaptures": {
+                "0": {
+                    "name": "variable.parameter.mask"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "#klass_id"
+                }, 
+                {
+                    "include": "#node_attribute"
+                }
+            ], 
+            "begin": "(@[^\\s\\.#;>\\{]+)"
+        }, 
+        "literal-string": {
+            "patterns": [
+                {
+                    "beginCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "end": "(''')", 
+                    "name": "literal-string", 
+                    "begin": "(''')", 
+                    "patterns": [
+                        {
+                            "include": "#string-content"
+                        }
+                    ]
+                }, 
+                {
+                    "beginCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "end": "(\"\"\")", 
+                    "name": "literal-string", 
+                    "begin": "(\"\"\")", 
+                    "patterns": [
+                        {
+                            "include": "#string-content"
+                        }
+                    ]
+                }, 
+                {
+                    "beginCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "end": "(')", 
+                    "name": "literal-string", 
+                    "begin": "(')", 
+                    "patterns": [
+                        {
+                            "include": "#string-content"
+                        }
+                    ]
+                }, 
+                {
+                    "beginCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "string.quoted.single.js"
+                        }
+                    }, 
+                    "end": "(\")", 
+                    "name": "literal-string", 
+                    "begin": "(\")", 
+                    "patterns": [
+                        {
+                            "include": "#string-content"
+                        }
+                    ]
+                }
+            ]
+        }, 
+        "js-interpolation": {
+            "patterns": [
+                {
+                    "end": "\\]", 
                     "name": "other.interpolated.mask", 
-                    "begin": "\\("
+                    "patterns": [
+                        {
+                            "include": "#js-interpolation"
+                        }, 
+                        {
+                            "include": "source.js"
+                        }
+                    ], 
+                    "begin": "\\["
                 }
             ]
         }, 
@@ -469,36 +504,64 @@
                 }
             ]
         }, 
-        "comments": {
+        "punctuation": {
+            "name": "meta.group.braces", 
+            "match": "([>;\\{\\}])", 
             "patterns": [
                 {
-                    "captures": {
-                        "0": {
-                            "name": "punctuation.definition.comment.js"
-                        }
-                    }, 
-                    "end": "\\*/", 
-                    "name": "comment.block.js", 
-                    "begin": "/\\*"
-                }, 
+                    "include": "$self"
+                }
+            ]
+        }, 
+        "js-block": {
+            "patterns": [
                 {
-                    "captures": {
+                    "end": "\\}", 
+                    "name": "other.interpolated.mask", 
+                    "patterns": [
+                        {
+                            "include": "#js-block"
+                        }, 
+                        {
+                            "include": "source.js"
+                        }
+                    ], 
+                    "begin": "\\{"
+                }
+            ]
+        }, 
+        "style": {
+            "patterns": [
+                {
+                    "beginCaptures": {
                         "1": {
-                            "name": "punctuation.definition.comment.js"
+                            "name": "variable.parameter"
                         }
                     }, 
-                    "name": "comment.line.double-slash.js", 
-                    "match": "(//).*$\\n?"
+                    "endCaptures": {
+                        "1": {
+                            "name": "variable.parameter"
+                        }
+                    }, 
+                    "end": "(\\})", 
+                    "name": "syntax.style.mask", 
+                    "begin": "(\\{)", 
+                    "patterns": [
+                        {
+                            "include": "source.css"
+                        }
+                    ]
                 }
             ]
         }, 
         "tag_style": {
+            "end": "(?<=\\})|(\\})", 
+            "name": "syntax.style.mask", 
             "beginCaptures": {
                 "1": {
                     "name": "support.constant"
                 }
             }, 
-            "begin": "(style)\\b", 
             "patterns": [
                 {
                     "include": "#klass_id"
@@ -510,24 +573,41 @@
                     "include": "#style"
                 }
             ], 
-            "name": "syntax.style.mask", 
-            "end": "(?<=\\})|(\\})"
+            "begin": "(style)\\b"
         }, 
-        "expression": {
+        "define": {
+            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])", 
+            "name": "define.mask", 
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword"
+                }
+            }, 
             "patterns": [
                 {
-                    "endCaptures": {
-                        "0": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
-                    "name": "markup.italic", 
-                    "begin": "(\\()", 
-                    "beginCaptures": {
-                        "0": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
+                    "name": "keyword", 
+                    "match": "(as|extends)\\b"
+                }, 
+                {
+                    "name": "punctuation", 
+                    "match": "(,)"
+                }, 
+                {
+                    "name": "entity.other.attribute-name", 
+                    "match": "([\\w_\\-:]+)"
+                }, 
+                {
+                    "name": "variable.parameter", 
+                    "match": "(\\([^\\)]*\\))"
+                }
+            ], 
+            "begin": "(define\\b)"
+        }, 
+        "js-expression": {
+            "patterns": [
+                {
+                    "end": "\\)", 
+                    "name": "other.interpolated.mask", 
                     "patterns": [
                         {
                             "include": "#js-expression"
@@ -536,62 +616,51 @@
                             "include": "source.js"
                         }
                     ], 
-                    "end": "\\)"
+                    "begin": "\\("
                 }
             ]
         }, 
-        "node_template": {
+        "node_attribute_expression": {
+            "end": "(\\))", 
+            "name": "meta.group.braces.round", 
+            "patterns": [
+                {
+                    "include": "js-expression"
+                }
+            ], 
+            "begin": "(\\()"
+        }, 
+        "node": {
+            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])", 
+            "name": "node.mask", 
             "beginCaptures": {
                 "0": {
-                    "name": "variable.parameter.mask"
+                    "name": "entity.name.tag.mask"
                 }
             }, 
-            "begin": "(@[^\\s\\.#;>\\{]+)", 
             "patterns": [
                 {
-                    "include": "#klass_id"
-                }, 
-                {
-                    "include": "#node_attribute"
+                    "include": "#node_attributes"
                 }
             ], 
-            "name": "node.mask", 
-            "end": "(?<=[>;\\{\\}])|(?=[>;\\{\\}])|([>;\\{\\}])"
+            "begin": "([^\\s\\.#;>\\{\\(]+)"
         }, 
-        "node_attributes": {
+        "node_attribute_value": {
             "patterns": [
                 {
-                    "include": "#klass_id"
+                    "name": "constant.character", 
+                    "match": "(true|false)(?=[\\s>;\\{])"
                 }, 
                 {
-                    "include": "#node_attribute"
-                }
-            ], 
-            "end": "(?<=[>;\\{\\}])", 
-            "name": "node.attributes.mask", 
-            "begin": ""
-        }, 
-        "style": {
-            "patterns": [
+                    "name": "constant.numeric", 
+                    "match": "([\\d\\.]+)(?=[\\s>;\\{])"
+                }, 
                 {
-                    "endCaptures": {
-                        "1": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
-                    "name": "syntax.style.mask", 
-                    "begin": "(\\{)", 
-                    "beginCaptures": {
-                        "1": {
-                            "name": "variable.parameter"
-                        }
-                    }, 
-                    "patterns": [
-                        {
-                            "include": "source.css"
-                        }
-                    ], 
-                    "end": "(\\})"
+                    "include": "#literal-string"
+                }, 
+                {
+                    "name": "string.quoted", 
+                    "match": "((\\s*)[^\\s>;\\{]+)"
                 }
             ]
         }

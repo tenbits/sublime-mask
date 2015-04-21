@@ -28,6 +28,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#define</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#tag_javascript</string>
 		</dict>
 		<dict>
@@ -41,6 +45,10 @@
 		<dict>
 			<key>include</key>
 			<string>#tag</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#statement</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -90,6 +98,50 @@
 					<string>(//).*$\n?</string>
 					<key>name</key>
 					<string>comment.line.double-slash.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>define</key>
+		<dict>
+			<key>begin</key>
+			<string>(define\b)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?&lt;=[&gt;;\{\}])|(?=[&gt;;\{\}])|([&gt;;\{\}])</string>
+			<key>name</key>
+			<string>define.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(as|extends)\b</string>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(,)</string>
+					<key>name</key>
+					<string>punctuation</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([\w_\-:]+)</string>
+					<key>name</key>
+					<string>entity.other.attribute-name</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\([^\)]*\))</string>
+					<key>name</key>
+					<string>variable.parameter</string>
 				</dict>
 			</array>
 		</dict>
@@ -379,7 +431,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.other.attribute-name.mask</string>
+					<string>entity.other.attribute-name.markup.bold.mask</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -760,6 +812,30 @@
 				</dict>
 			</array>
 		</dict>
+		<key>statement</key>
+		<dict>
+			<key>begin</key>
+			<string>(if|else|with|each|for|\+if|\+with|\+each|\+for|debugger|log|script|\:import|\:template)(?=[\s.#;\{\}]|$)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.constant</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?&lt;=[&gt;;\{\}])|(?=[&gt;;\{\}])|([&gt;;\{\}])</string>
+			<key>name</key>
+			<string>tag.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#node_attributes</string>
+				</dict>
+			</array>
+		</dict>
 		<key>string-content</key>
 		<dict>
 			<key>patterns</key>
@@ -822,18 +898,13 @@
 		<key>tag</key>
 		<dict>
 			<key>begin</key>
-			<string>(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|dir|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|keygen|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|u|ul|var|video|wbr|xmp)\b|(if|else|with|each|for|\+if|\+with|\+each|\+for|debugger|define|log|script|\:import|\:template)\b</string>
+			<string>(a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|dir|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|keygen|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|u|ul|var|video|wbr|xmp)(?=[\s.#;\{\}]|$)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>storage.type.mask</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>support.constant</string>
 				</dict>
 			</dict>
 			<key>end</key>
