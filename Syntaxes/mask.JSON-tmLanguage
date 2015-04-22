@@ -580,7 +580,7 @@
             "name": "define.mask", 
             "beginCaptures": {
                 "1": {
-                    "name": "keyword"
+                    "name": "support.constant"
                 }
             }, 
             "patterns": [
@@ -601,7 +601,7 @@
                     "match": "(\\([^\\)]*\\))"
                 }
             ], 
-            "begin": "(define\\b)"
+            "begin": "((define|let)\\b)"
         }, 
         "js-expression": {
             "patterns": [

@@ -45,9 +45,9 @@ repository:
       - include: '#literal-string'
   define:
     name: 'define.mask'
-    begin: (define\b)
+    begin: ((define|let)\b)
     beginCaptures:
-      '1': { name: keyword }
+      '1': { name: support.constant }
     end: (?<=[>;\{\}])|(?=[>;\{\}])|([>;\{\}])
     patterns:
       - name: keyword
