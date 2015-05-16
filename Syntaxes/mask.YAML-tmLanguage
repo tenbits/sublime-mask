@@ -167,6 +167,7 @@ repository:
   node_attribute:
     name: node.attribute.mask
     patterns:
+      - include: '#comments'
       - name: attribute-expression
         include: '#expression'
       - name: attribute-key-value
