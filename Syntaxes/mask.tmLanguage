@@ -264,6 +264,25 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>other.interpolated.mask</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?&lt;!\\)(~)([\w\.]+)</string>
+					<key>name</key>
+					<string>markup.italic</string>
+				</dict>
+				<dict>
 					<key>begin</key>
 					<string>(~\[)</string>
 					<key>beginCaptures</key>

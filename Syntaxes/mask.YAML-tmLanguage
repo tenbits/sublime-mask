@@ -271,6 +271,12 @@ repository:
   interpolation: 
     patterns:
       - name: markup.italic
+        match: (?<!\\)(~)([\w\.]+)
+        captures:
+          '1': {name: variable.parameter}
+          '2': {name: other.interpolated.mask}
+
+      - name: markup.italic
         begin: (~\[)
         beginCaptures:
           '0': {name: variable.parameter }
