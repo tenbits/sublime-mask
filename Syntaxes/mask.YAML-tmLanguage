@@ -12,6 +12,7 @@ patterns:
 - include: '#import'
 - include: '#define'
 - include: '#tag_javascript'
+- include: '#tag_var'
 - include: '#tag_style'
 - include: '#tag_markdown'
 - include: '#tag'
@@ -62,7 +63,7 @@ repository:
   tag:
     name: tag.mask
     begin: >-
-        (a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|dir|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|keygen|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|u|ul|var|video|wbr|xmp)(?=[\s.#;\{\}]|$)
+        (a|abbr|acronym|address|applet|area|article|aside|audio|b|base|basefont|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|command|datalist|dd|del|details|dfn|dir|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|iframe|img|input|ins|keygen|kbd|label|legend|li|link|map|mark|menu|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|u|ul|video|wbr|xmp)(?=[\s.#;\{\}]|$)
     beginCaptures:
       '1': { name: storage.type.mask }
       
@@ -73,7 +74,7 @@ repository:
   statement:
     name: tag.mask
     begin: >-
-        (if|else|with|each|for|\+if|\+with|\+each|\+for|debugger|log|script|\:import|\:template)(?=[\s.#;\{\}]|$)
+        (if|else|with|each|for|switch|case|\+if|\+with|\+each|\+for|debugger|log|script|\:import|\:template|include)(?=[\s.#;\{\}]|$)
     beginCaptures:
       '1': { name: support.constant }
       
@@ -92,6 +93,14 @@ repository:
     - include: '#klass_id'
     - include: '#node_attribute'
     - include: '#javascript'
+  tag_var:
+    name: var.mask
+    begin: (var)\b
+    beginCaptures:
+      '1': { name: support.constant }
+    end: ([\};\]])|(?<=[\};\]])
+    patterns:
+    - include: source.js
 
   tag_style:
     name: syntax.style.mask
