@@ -28,6 +28,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#xml</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#define</string>
 		</dict>
 		<dict>
@@ -247,7 +251,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(as|from)\b</string>
+					<string>\b(async|as|from)\b</string>
 					<key>name</key>
 					<string>keyword</string>
 				</dict>
@@ -1063,6 +1067,39 @@
 				<dict>
 					<key>include</key>
 					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>xml</key>
+		<dict>
+			<key>begin</key>
+			<string>(?=&lt;/?\s*(\w+))</string>
+			<key>end</key>
+			<string>(?&lt;=&lt;/\1&gt;)</string>
+			<key>name</key>
+			<string>syntax.html.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(&lt;mask&gt;)</string>
+					<key>end</key>
+					<string>(&lt;/mask&gt;)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.mask</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>text.html.basic</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#xml</string>
 				</dict>
 			</array>
 		</dict>

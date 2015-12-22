@@ -10,6 +10,7 @@ patterns:
 - include: '#punctuation'
 - include: '#literal-string'
 - include: '#import'
+- include: '#xml'
 - include: '#define'
 - include: '#tag_javascript'
 - include: '#tag_var'
@@ -17,12 +18,9 @@ patterns:
 - include: '#tag_markdown'
 - include: '#tag'
 - include: '#statement'
-
-
 - include: '#node_klass_id'
 - include: '#node_template'
 - include: '#node'
-
 
 
 repository:
@@ -40,7 +38,7 @@ repository:
     end: (;|(?<=['|"]))
     patterns:
       - name: keyword
-        match: \b(as|from)\b
+        match: \b(async|as|from)\b
       - name: punctuation
         match: (,)
       - include: '#literal-string'
@@ -382,3 +380,15 @@ repository:
       '1': { name: variable.parameter }
     patterns:
     - include: 'text.html.markdown'
+  
+  xml:    
+    name: syntax.html.mask
+    begin: (?=</?\s*(\w+))
+    end: (?<=</\1>)
+    patterns:
+    - begin: (<mask>)
+      end: (</mask>)
+      patterns:
+      - include: 'source.mask'
+    - include: 'text.html.basic'
+    - include: '#xml'

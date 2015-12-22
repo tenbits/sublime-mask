@@ -68,7 +68,7 @@ switch (state) {
 // ### MODULES
 import from 'foo.mask';
 import * as Data from '/api/data' is json;
-import Foo, Quux from 'baz';
+import async Foo, Quux from 'baz';
 
 // ### DEFINE
 define Foo as (div.span) extends Dialog, Collapser {
@@ -100,3 +100,5 @@ define A extends B {
 A {
 	@footer > 'Test'
 }
+
+<div> Suppots html tags within </div>
