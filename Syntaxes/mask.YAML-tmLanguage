@@ -10,6 +10,9 @@ patterns:
 - include: '#punctuation'
 - include: '#literal-string'
 - include: '#import'
+- include: '#xml_markdown'
+- include: '#xml_style'
+- include: '#xml_script'
 - include: '#xml'
 - include: '#define'
 - include: '#tag_javascript'
@@ -380,7 +383,40 @@ repository:
       '1': { name: variable.parameter }
     patterns:
     - include: 'text.html.markdown'
-  
+
+  xml_markdown:
+    name: syntax.markdown.mask  
+    begin: (?i)<markdown[^\>]*>
+    beginCaptures:
+      '0': { name: variable.parameter }
+    end: (?i)</markdown[^\>]*>
+    endCaptures:
+      '0': { name: variable.parameter }
+    patterns:
+    - include: 'text.html.markdown'
+
+  xml_style:
+    name: syntax.markdown.mask  
+    begin: (?i)<style[^\>]*>
+    beginCaptures:
+      '0': { name: variable.parameter }
+    end: (?i)</style[^\>]*>
+    endCaptures:
+      '0': { name: variable.parameter }
+    patterns:
+    - include: 'source.css'
+
+  xml_script:
+    name: syntax.markdown.mask  
+    begin: (?i)<script[^\>]*>
+    beginCaptures:
+      '0': { name: variable.parameter }
+    end: (?i)</script[^\>]*>
+    endCaptures:
+      '0': { name: variable.parameter }
+    patterns:
+    - include: 'source.js'
+
   xml:    
     name: syntax.html.mask
     begin: (?=</?\s*(\w+))

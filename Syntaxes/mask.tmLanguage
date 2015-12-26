@@ -28,6 +28,18 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#xml_markdown</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#xml_style</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#xml_script</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#xml</string>
 		</dict>
 		<dict>
@@ -1100,6 +1112,102 @@
 				<dict>
 					<key>include</key>
 					<string>#xml</string>
+				</dict>
+			</array>
+		</dict>
+		<key>xml_markdown</key>
+		<dict>
+			<key>begin</key>
+			<string>(?i)&lt;markdown[^\&gt;]*&gt;</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?i)&lt;/markdown[^\&gt;]*&gt;</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>syntax.markdown.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>text.html.markdown</string>
+				</dict>
+			</array>
+		</dict>
+		<key>xml_script</key>
+		<dict>
+			<key>begin</key>
+			<string>(?i)&lt;script[^\&gt;]*&gt;</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?i)&lt;/script[^\&gt;]*&gt;</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>syntax.markdown.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>xml_style</key>
+		<dict>
+			<key>begin</key>
+			<string>(?i)&lt;style[^\&gt;]*&gt;</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?i)&lt;/style[^\&gt;]*&gt;</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>syntax.markdown.mask</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.css</string>
 				</dict>
 			</array>
 		</dict>
