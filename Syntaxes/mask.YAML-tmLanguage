@@ -9,6 +9,7 @@ patterns:
 - include: '#comments'
 - include: '#punctuation'
 - include: '#literal-string'
+- include: '#decorator'
 - include: '#import'
 - include: '#xml_markdown'
 - include: '#xml_style'
@@ -223,6 +224,17 @@ repository:
       match: (//).*$\n?
       captures:
         '1': {name: punctuation.definition.comment.js}
+
+  decorator:
+    begin: (\[)
+    beginCaptures:
+      '1': {name: keyword}
+    end: (\])
+    endCaptures:
+      '1': {name: keyword}
+    patterns:
+      - include: source.js
+      
 
   literal-string:
     patterns:

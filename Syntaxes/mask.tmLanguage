@@ -24,6 +24,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#decorator</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#import</string>
 		</dict>
 		<dict>
@@ -118,6 +122,36 @@
 					<string>(//).*$\n?</string>
 					<key>name</key>
 					<string>comment.line.double-slash.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>decorator</key>
+		<dict>
+			<key>begin</key>
+			<string>(\[)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\])</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.js</string>
 				</dict>
 			</array>
 		</dict>
