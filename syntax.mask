@@ -102,3 +102,7 @@ A {
 }
 
 <div> Suppots html tags within </div>
+
+[IsAuthorized]
+[WithCaption('Foo')]
+div;
