@@ -15,7 +15,8 @@
             "release": [
                 "info.plist",
                 "Snippets/*",
-                "Syntaxes/*"
+                "Syntaxes/*",
+                "metadata/*"
             ]
         }
     }
