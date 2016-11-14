@@ -1121,7 +1121,7 @@
 			<key>begin</key>
 			<string>(?=&lt;/?\s*(\w+))</string>
 			<key>end</key>
-			<string>(?&lt;=&lt;/\1\s*&gt;)</string>
+			<string>(?&lt;=&lt;/\1&gt;)</string>
 			<key>name</key>
 			<string>syntax.html.mask</string>
 			<key>patterns</key>
