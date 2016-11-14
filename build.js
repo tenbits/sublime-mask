@@ -21,6 +21,7 @@ module.exports = {
 
 				addFolder('Snippets/');
 				addFolder('Syntaxes/');
+				addFolder('metadata/');
 
 				function addFolder(name) {
 					zip.addLocalFolder(new io.Directory(name + '/').uri.toLocalDir(), name);
