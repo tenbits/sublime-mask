@@ -432,7 +432,7 @@ repository:
   xml:    
     name: syntax.html.mask
     begin: (?=</?\s*(\w+))
-    end: (?<=</\1\s*>)
+    end: (?<=</\1>)
     patterns:
     - begin: (<mask>)
       end: (</mask>)
