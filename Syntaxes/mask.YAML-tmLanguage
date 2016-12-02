@@ -42,7 +42,7 @@ repository:
     end: (;|(?<=['|"]))
     patterns:
       - name: keyword
-        match: \b(async|as|from)\b
+        match: \b(sync|async|as|from)\b
       - name: punctuation
         match: (,)
       - include: '#literal-string'
@@ -92,6 +92,8 @@ repository:
       '1': { name: support.constant }
     end: (\})|(?<=\})
     patterns:
+    - name: keyword
+      match: \b(static|private|public|async)\b
     - include: '#klass_id'
     - include: '#node_attribute'
     - include: '#javascript'

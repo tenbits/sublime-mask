@@ -297,7 +297,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(async|as|from)\b</string>
+					<string>\b(sync|async|as|from)\b</string>
 					<key>name</key>
 					<string>keyword</string>
 				</dict>
@@ -1014,6 +1014,12 @@
 			<string>slot.mask</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(static|private|public|async)\b</string>
+					<key>name</key>
+					<string>keyword</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#klass_id</string>
