@@ -1,7 +1,7 @@
 {
     "name": "-",
     "description": "Sublime Mask Package",
-    "version": "0.8.17",
+    "version": "0.8.18",
     "contributors": [],
     "author": "Alex Kit <alex.kit@atmajs.com>",
     "devDependencies": {
