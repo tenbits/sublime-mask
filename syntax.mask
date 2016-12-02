@@ -106,3 +106,7 @@ A {
 [IsAuthorized]
 [WithCaption('Foo')]
 div;
+
+function private async loadUser () {
+	
+}
