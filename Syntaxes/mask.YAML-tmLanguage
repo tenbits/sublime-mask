@@ -93,7 +93,7 @@ repository:
     end: (\})|(?<=\})
     patterns:
     - name: keyword
-      match: \b(static|private|public|async)\b
+      match: \b(static|private|public|async|self)\b
     - include: '#klass_id'
     - include: '#node_attribute'
     - include: '#javascript'
