@@ -32,5 +32,21 @@ In progress
 
 :beers: Happy coding
 
+
+#### Develop
+
+###### Publish
+
+- Local Package
+    ```bash
+    npm run build
+    ```
+
+- Package Control Repository
+
+    ```
+    npm run publish
+    ```
+
 ----
 :copyright: _MIT - 2014 Alex Kit_

@@ -498,7 +498,7 @@
 		<key>klass_id</key>
 		<dict>
 			<key>begin</key>
-			<string>([\.#][\w_\-$]*)</string>
+			<string>([\.#][\w_\-$:]*)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>

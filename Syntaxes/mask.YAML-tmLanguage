@@ -158,7 +158,7 @@ repository:
 
   klass_id:
     name: node-head.attribute.mask
-    begin: ([\.#][\w_\-$]*)
+    begin: ([\.#][\w_\-$:]*)
     beginCaptures:
       '1': { name: entity.other.attribute-name.markup.bold.mask }
     end: (?=[\s\.#])
