@@ -999,7 +999,7 @@
 		<key>tag_javascript</key>
 		<dict>
 			<key>begin</key>
-			<string>(slot|event|function|script)\b</string>
+			<string>(slot|pipe|event|function|script)\b</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>

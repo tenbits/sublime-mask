@@ -87,7 +87,7 @@ repository:
   
   tag_javascript:
     name: slot.mask
-    begin: (slot|event|function|script)\b
+    begin: (slot|pipe|event|function|script)\b
     beginCaptures:
       '1': { name: support.constant }
     end: (\})|(?<=\})
