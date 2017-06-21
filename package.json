@@ -1,8 +1,8 @@
 {
-    "name": "sublime-language-mask",
+    "name": "-",
     "private": true,
     "description": "Sublime Mask Package",
-    "version": "0.8.21",
+    "version": "0.8.22",
     "contributors": [],
     "author": "Alex Kit <alex.kit@atmajs.com>",
     "devDependencies": {
