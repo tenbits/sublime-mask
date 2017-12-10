@@ -211,7 +211,7 @@ repository:
     begin: (\()
     end: (\))
     patterns:
-      - include: "js-expression"
+      - include: "#js-expression"
 
   comments:
     patterns:
