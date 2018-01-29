@@ -775,7 +775,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>js-expression</string>
+					<string>#js-expression</string>
 				</dict>
 			</array>
 		</dict>
